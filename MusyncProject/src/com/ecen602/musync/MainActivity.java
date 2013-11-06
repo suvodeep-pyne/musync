@@ -2,7 +2,9 @@ package com.ecen602.musync;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class MainActivity extends Activity {
 
@@ -19,4 +21,15 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	/** Called when the user clicks the create_station button */
+	public void createStation(View view) {
+		Intent intent = new Intent(this, CreateStationActivity.class);
+		startActivity(intent);
+	}
+	
+	/** Called when the user clicks the join_station button */
+	public void joinStation(View view) {
+		Intent intent = new Intent(this, JoinStationActivity.class);
+		startActivity(intent);
+	}
 }
