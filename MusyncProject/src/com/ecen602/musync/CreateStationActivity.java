@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 public class CreateStationActivity extends Activity {
-	CommunicationMaster communicationMaster;
+	MasterListener communicationMaster;
 	Thread communicationMasterThread;
 	
 	@Override
@@ -18,7 +18,7 @@ public class CreateStationActivity extends Activity {
 				R.raw.pherari_mon);
 		mediaPlayer.start();
 		
-		communicationMaster = new CommunicationMaster();
+		communicationMaster = new MasterListener();
 		communicationMasterThread = new Thread(communicationMaster);
 		communicationMasterThread.start();
 	}
