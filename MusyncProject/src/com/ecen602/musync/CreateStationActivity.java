@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 
 public class CreateStationActivity extends Activity {
-
+	CommunicationMaster communicationMaster;
+	Thread communicationMasterThread;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -15,6 +17,10 @@ public class CreateStationActivity extends Activity {
 		MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), 
 				R.raw.pherari_mon);
 		mediaPlayer.start();
+		
+		communicationMaster = new CommunicationMaster();
+		communicationMasterThread = new Thread(communicationMaster);
+		communicationMasterThread.start();
 	}
 
 	@Override

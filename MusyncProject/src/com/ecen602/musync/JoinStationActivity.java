@@ -5,11 +5,17 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class JoinStationActivity extends Activity {
-
+	CommunicationSlave communicationSlave;
+	Thread communicationSlaveThread;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_join_station);
+		
+		communicationSlave = new CommunicationSlave();
+		communicationSlaveThread = new Thread(communicationSlave);
+		communicationSlaveThread.start();
 	}
 
 	@Override
