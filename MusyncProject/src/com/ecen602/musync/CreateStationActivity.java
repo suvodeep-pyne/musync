@@ -3,24 +3,27 @@ package com.ecen602.musync;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 
 public class CreateStationActivity extends Activity {
-	MasterListener communicationMaster;
-	Thread communicationMasterThread;
+	MasterListener listener;
+	Thread listenerThread;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_station);
 		
-		MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), 
+/*		MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), 
 				R.raw.pherari_mon);
-		mediaPlayer.start();
+		mediaPlayer.start();*/
 		
-		communicationMaster = new MasterListener();
-		communicationMasterThread = new Thread(communicationMaster);
-		communicationMasterThread.start();
+		listener = new MasterListener();
+		listenerThread = new Thread(listener);
+		listenerThread.start();
+		
+		Log.w("Musync", "Started ListenerThread");
 	}
 
 	@Override
