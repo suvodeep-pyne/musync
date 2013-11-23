@@ -18,7 +18,8 @@ public class CommunicationSlave implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			socket = new Socket("192.168.1.3", 5000);
+			socket = new Socket("127.0.0.1", 8000);
+			System.out.println("Client connected to server");
 			communicate();
 
 		} catch (UnknownHostException e1) {
@@ -30,6 +31,7 @@ public class CommunicationSlave implements Runnable {
 		// communicate with server
 	public void communicate() {
 	try {
+		System.out.println("Client inside communicate");
         ObjectInputStream objectInput = 
         		new ObjectInputStream(socket.getInputStream());
         Packet packet;
@@ -40,7 +42,6 @@ public class CommunicationSlave implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
     } 
     catch (IOException e) {
         e.printStackTrace();
