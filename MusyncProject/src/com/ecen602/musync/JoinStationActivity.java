@@ -1,7 +1,7 @@
 package com.ecen602.musync;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class JoinStationActivity extends Activity {
