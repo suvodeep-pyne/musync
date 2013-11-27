@@ -12,7 +12,7 @@ public class SlaveCommunicator implements Runnable {
 	@Override
 	public void run() {
 		try {
-			socket = new Socket("192.168.1.3", 8000);
+			socket = new Socket("192.168.1.14", Constants.PORT);
 			System.out.println("Client inside communicate");
 			ObjectInputStream objectInput = new ObjectInputStream(
 					socket.getInputStream());
