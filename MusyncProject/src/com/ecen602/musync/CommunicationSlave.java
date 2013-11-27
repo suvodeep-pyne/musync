@@ -12,7 +12,8 @@ public class CommunicationSlave implements Runnable {
 	@Override
 	public void run() {
 		try {
-			socket = new Socket("192.168.1.3", 5000);
+			socket = new Socket("127.0.0.1", 8000);
+			System.out.println("Client connected to server");
 			communicate();
 
 		} catch (UnknownHostException e1) {
@@ -24,19 +25,17 @@ public class CommunicationSlave implements Runnable {
 
 	public void communicate() {
 		try {
+			System.out.println("Client inside communicate");
 			ObjectInputStream objectInput = new ObjectInputStream(
 					socket.getInputStream());
 			Packet packet;
-			try {
-				packet = (Packet) objectInput.readObject();
-				System.out.println("Client received" + packet);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-
+			packet = (Packet) objectInput.readObject();
+			System.out.println("Client received" + packet);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-	}
 
+	}
 }
