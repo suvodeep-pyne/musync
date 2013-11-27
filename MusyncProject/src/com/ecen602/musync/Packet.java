@@ -1,8 +1,7 @@
 package com.ecen602.musync;
 
 import java.io.Serializable;
-
-import android.text.format.Time;
+import java.util.Date;
 
 public class Packet implements Serializable{
 
@@ -10,12 +9,12 @@ public class Packet implements Serializable{
 	private static final long serialVersionUID = 3429538255807019677L;
 
 	// Time to start playing
-	final Time playTime;
+	final Date playTime;
 	
 	// Seek time in msec
 	final int offset;
 	
-	Packet(Time playTime, int offset) {
+	Packet(Date playTime, int offset) {
 		this.playTime = playTime;
 		this.offset = offset;
 	}

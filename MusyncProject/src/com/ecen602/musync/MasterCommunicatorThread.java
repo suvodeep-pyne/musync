@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Date;
 
-import android.text.format.Time;
 import android.util.Log;
 
 public class MasterCommunicatorThread extends Thread {
@@ -22,8 +22,7 @@ public class MasterCommunicatorThread extends Thread {
 			ObjectOutputStream objectOutput = new ObjectOutputStream(
 					socket.getOutputStream());
 			
-			Time now = new Time();
-			now.setToNow();
+			Date now = new Date();
 			
 			objectOutput.writeObject(new Packet(now, 50000));
 
