@@ -13,7 +13,7 @@ public class JoinStationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_join_station);
 		
-		communicationSlave = new SlaveCommunicator();
+		communicationSlave = new SlaveCommunicator(this);
 		communicationSlaveThread = new Thread(communicationSlave);
 		communicationSlaveThread.start();
 	}

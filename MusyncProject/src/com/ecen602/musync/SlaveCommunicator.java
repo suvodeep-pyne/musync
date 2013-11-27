@@ -5,19 +5,28 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class SlaveCommunicator implements Runnable {
+import android.util.Log;
+import android.app.Activity;
+import android.content.Context;
+import android.media.MediaPlayer;
 
+public class SlaveCommunicator implements Runnable {
+	final Activity parent;
 	Socket socket;
 
+	public SlaveCommunicator(Activity parent) {
+		this.parent = parent;
+	}
+	
 	@Override
 	public void run() {
 		try {
-			socket = new Socket("192.168.1.14", Constants.PORT);
+			socket = new Socket("192.168.1.3", Constants.PORT);
 			System.out.println("Client inside communicate");
 			ObjectInputStream objectInput = new ObjectInputStream(
 					socket.getInputStream());
 			Packet packet = (Packet) objectInput.readObject();
-			
+			start_playback(packet);
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -26,4 +35,10 @@ public class SlaveCommunicator implements Runnable {
 			e.printStackTrace();
 		}
 	}
-}
+		private void start_playback(Packet packet) {
+		if (packet != null) {
+			MediaPlayer mediaPlayer =  MediaPlayer.create(parent.getApplicationContext(), R.raw.pherari_mon);
+			mediaPlayer.start();
+		}
+		}
+	}
