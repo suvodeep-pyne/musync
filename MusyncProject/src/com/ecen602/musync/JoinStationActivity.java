@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 
 public class JoinStationActivity extends Activity {
-	CommunicationSlave communicationSlave;
+	SlaveCommunicator communicationSlave;
 	Thread communicationSlaveThread;
 	
 	@Override
@@ -13,7 +13,7 @@ public class JoinStationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_join_station);
 		
-		communicationSlave = new CommunicationSlave();
+		communicationSlave = new SlaveCommunicator();
 		communicationSlaveThread = new Thread(communicationSlave);
 		communicationSlaveThread.start();
 	}
