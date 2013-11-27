@@ -5,7 +5,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class CommunicationSlave implements Runnable {
+public class SlaveCommunicator implements Runnable {
 
 	Socket socket;
 
