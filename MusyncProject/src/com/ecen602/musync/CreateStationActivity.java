@@ -36,7 +36,7 @@ public class CreateStationActivity extends Activity {
 
 	public void onPlayPressed(View v){
 		MediaPlayer mediaPlayer = MediaPlayer.create(
-				getApplicationContext(), R.raw.pherari_mon);
+				getApplicationContext(), R.raw.sample_song);
 		mediaPlayer.start();
 	}
 }

@@ -38,7 +38,7 @@ public class SlaveCommunicator implements Runnable {
 	private void start_playback(Packet packet) {
 		if (packet != null) {
 			MediaPlayer mediaPlayer = MediaPlayer.create(
-					parent.getApplicationContext(), R.raw.pherari_mon);
+					parent.getApplicationContext(), R.raw.sample_song);
 
 			System.out.println("Seeking");
 			mediaPlayer.seekTo(packet.offset);
