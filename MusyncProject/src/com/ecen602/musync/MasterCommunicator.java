@@ -9,7 +9,7 @@ import java.util.List;
 import android.util.Log;
 
 public class MasterCommunicator {
-	private Thread listener;
+	private Thread listener, sender;
 	private ServerSocket listenerSocket = null;
 	
 	boolean listening = true;
@@ -48,13 +48,22 @@ public class MasterCommunicator {
 				}
 			}
 		});
+		Thread sender = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				send();
+			}
+		}, "MasterCommunicator Sender");
 	}
 	
 	public void startListener() {
 		listener.start();
 	}
 	
-	public void send() {
+	public void sendMessage() {
+		sender.start();
+	}
+	private void send() {
 		List<ClientHandler> remove = new ArrayList<ClientHandler>();
 		
 		for (ClientHandler ch : clients) {

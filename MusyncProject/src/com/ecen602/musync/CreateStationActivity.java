@@ -42,7 +42,7 @@ public class CreateStationActivity extends Activity {
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
 		
-		communicator.send();
+		communicator.sendMessage();
 	}
 
 	public void onPausePressed(View v){

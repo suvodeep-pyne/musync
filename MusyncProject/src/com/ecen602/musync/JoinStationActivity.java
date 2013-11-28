@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class JoinStationActivity extends Activity {
-	SlaveCommunicator communicationSlave;
-	Thread communicationSlaveThread;
+	SlaveCommunicator slaveCommunicator;
 	private ImageButton playButton, pauseButton;
 	
 	@Override
@@ -18,8 +17,6 @@ public class JoinStationActivity extends Activity {
 		
 		playButton = (ImageButton) findViewById(R.id.playButton);
 		pauseButton = (ImageButton) findViewById(R.id.pauseButton);		
-		
-		
 	}
 
 	@Override
@@ -34,10 +31,8 @@ public class JoinStationActivity extends Activity {
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
 		
-		communicationSlave = new SlaveCommunicator(this);
-		communicationSlave.init();
-		communicationSlaveThread = new Thread(communicationSlave);
-		communicationSlaveThread.start();
+		slaveCommunicator = new SlaveCommunicator(this);
+		slaveCommunicator.init();
 	}
 
 	public void onPausePressed(View v){

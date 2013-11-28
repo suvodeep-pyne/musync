@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 
 import android.app.Activity;
 
-public class SlaveCommunicator implements Runnable {
+public class SlaveCommunicator {
 	final Activity parent;
 	private Socket socket;
 	private ObjectInputStream input = null;
@@ -17,39 +17,37 @@ public class SlaveCommunicator implements Runnable {
 	}
 
 	public void init() {
-		try {
-			socket = new Socket(Constants.SERVERIP, Constants.PORT);
-			input = new ObjectInputStream(socket.getInputStream());
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void run() {
-		try {
-			while (true) {
-				if (input.available() > 0) {
-					Packet packet = (Packet) input.readObject();
-					if (packet != null) {
-						start_playback(packet);
+		Thread listener = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					if (socket == null)
+						socket = new Socket(Constants.SERVERIP, Constants.PORT);
+					if (input == null)
+						input = new ObjectInputStream(socket.getInputStream());
+					
+					while (true) {
+						if (input.available() > 0) {
+							Packet packet = (Packet) input.readObject();
+							if (packet != null) {
+								start_playback(packet);
+							}
+						}
 					}
+				} catch (UnknownHostException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		}, "SlaveCommunicator listener");
+		listener.start();
 	}
 
 	private void start_playback(Packet packet) {
 		Player player = new Player(parent.getApplicationContext());
 		player.play(packet.playTime, packet.offset);
-
 	}
 }
