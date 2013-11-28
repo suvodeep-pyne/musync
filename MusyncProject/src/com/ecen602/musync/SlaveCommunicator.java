@@ -25,6 +25,7 @@ public class SlaveCommunicator implements Runnable {
 					socket.getInputStream());
 			Packet packet = (Packet) objectInput.readObject();
 			start_playback(packet);
+			// control_playback();
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -38,7 +39,11 @@ public class SlaveCommunicator implements Runnable {
 		if (packet != null) {
 			MediaPlayer mediaPlayer = MediaPlayer.create(
 					parent.getApplicationContext(), R.raw.pherari_mon);
+
+			System.out.println("Seeking");
+			mediaPlayer.seekTo(packet.offset);
 			mediaPlayer.start();
+
 		}
 	}
 }
