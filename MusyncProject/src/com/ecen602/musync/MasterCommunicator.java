@@ -9,7 +9,9 @@ import java.util.List;
 import android.util.Log;
 
 public class MasterCommunicator {
-	private ServerSocket listenerSocket = null;
+	/* This resource can be claimed if the user has opened
+	 * the CreateStationActivity once. */
+	private static ServerSocket listenerSocket = null;
 	
 	boolean listening = true;
 	final List<ClientHandler> clients = new ArrayList<ClientHandler>();
@@ -33,6 +35,7 @@ public class MasterCommunicator {
 							final ClientHandler ch = new ClientHandler(socket);
 							ch.setup();
 							clients.add(ch);
+							Log.w("Musync", "Client Added");
 						}
 					}
 				} catch (IOException e) {
