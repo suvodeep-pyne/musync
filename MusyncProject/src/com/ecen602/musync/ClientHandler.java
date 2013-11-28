@@ -21,10 +21,9 @@ public class ClientHandler {
 		}
 	}
 
-	public void send() throws IOException {
+	public void send(Date now) throws IOException {
 		if (output == null) 
 			throw new IOException("ObjectOutputStream not initialized");
-		Date now = new Date();
 		output.writeObject(new Packet(now, 0));
 		output.flush();
 	}

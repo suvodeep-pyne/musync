@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.util.Log;
@@ -54,20 +55,21 @@ public class MasterCommunicator {
 	}
 	
 	public void sendMessage() {
+		final Date now = new Date();
 		Thread sender = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				send();
+				send(now);
 			}
 		}, "MasterCommunicator Sender");
 		sender.start();
 	}
-	private void send() {
+	private void send(Date now) {
 		List<ClientHandler> remove = new ArrayList<ClientHandler>();
 		
 		for (ClientHandler ch : clients) {
 			try {
-				ch.send();
+				ch.send(now);
 			} catch (IOException e) {
 				Log.w("Musync", "Can't send to client. Removing from list");
 				remove.add(ch);

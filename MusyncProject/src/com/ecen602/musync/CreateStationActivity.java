@@ -38,11 +38,11 @@ public class CreateStationActivity extends Activity {
 	}
 
 	public void onPlayPressed(View v){
-		player.play();
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
 		
 		communicator.sendMessage();
+		player.play();
 	}
 
 	public void onPausePressed(View v){
