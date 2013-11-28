@@ -12,7 +12,7 @@ public class CreateStationActivity extends Activity {
 	
 	private ImageButton playButton, pauseButton;
 	
-	MasterListener listener;
+	MasterCommunicator communicator;
 	Thread listenerThread;
 	
 	@Override
@@ -25,9 +25,8 @@ public class CreateStationActivity extends Activity {
 		playButton = (ImageButton) findViewById(R.id.playButton);
 		pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		
-		listener = new MasterListener();
-		listenerThread = new Thread(listener);
-		listenerThread.start();
+		communicator = new MasterCommunicator();
+		communicator.startListener();
 		
 		Log.w("Musync", "Started ListenerThread");
 	}
