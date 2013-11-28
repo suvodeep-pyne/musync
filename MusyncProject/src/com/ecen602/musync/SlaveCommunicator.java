@@ -21,17 +21,15 @@ public class SlaveCommunicator {
 			@Override
 			public void run() {
 				try {
-					if (socket == null)
+					if (socket == null) {
 						socket = new Socket(Constants.SERVERIP, Constants.PORT);
-					if (input == null)
 						input = new ObjectInputStream(socket.getInputStream());
-					
+					}
+
 					while (true) {
-						if (input.available() > 0) {
-							Packet packet = (Packet) input.readObject();
-							if (packet != null) {
-								start_playback(packet);
-							}
+						Packet packet = (Packet) input.readObject();
+						if (packet != null) {
+							start_playback(packet);
 						}
 					}
 				} catch (UnknownHostException e) {

@@ -9,18 +9,17 @@ import java.util.List;
 import android.util.Log;
 
 public class MasterCommunicator {
-	private Thread listener, sender;
 	private ServerSocket listenerSocket = null;
 	
 	boolean listening = true;
 	final List<ClientHandler> clients = new ArrayList<ClientHandler>();
 	
 	public MasterCommunicator() {
-		init();
+		
 	}
 
-	public void init() {
-		listener = new Thread(new Runnable() {
+	public void startListener() {
+		Thread listener = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -48,19 +47,16 @@ public class MasterCommunicator {
 				}
 			}
 		});
+		listener.start();
+	}
+	
+	public void sendMessage() {
 		Thread sender = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				send();
 			}
 		}, "MasterCommunicator Sender");
-	}
-	
-	public void startListener() {
-		listener.start();
-	}
-	
-	public void sendMessage() {
 		sender.start();
 	}
 	private void send() {

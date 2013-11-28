@@ -25,7 +25,8 @@ public class ClientHandler {
 		if (output == null) 
 			throw new IOException("ObjectOutputStream not initialized");
 		Date now = new Date();
-		output.writeObject(new Packet(now, 50000));
+		output.writeObject(new Packet(now, 0));
+		output.flush();
 	}
 
 	public void close() {
