@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 
 public class CreateStationActivity extends Activity {
+	private Player player = new Player(this.getApplicationContext());
+	
+	private Button playButton, pauseButton;
+	
 	MasterListener listener;
 	Thread listenerThread;
 	
@@ -16,9 +21,8 @@ public class CreateStationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_station);
 		
-/*		MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), 
-				R.raw.pherari_mon);
-		mediaPlayer.start();*/
+		playButton = (Button) findViewById(R.id.playButton);
+		pauseButton = (Button) findViewById(R.id.pauseButton);
 		
 		listener = new MasterListener();
 		listenerThread = new Thread(listener);
@@ -35,8 +39,14 @@ public class CreateStationActivity extends Activity {
 	}
 
 	public void onPlayPressed(View v){
-		MediaPlayer mediaPlayer = MediaPlayer.create(
-				getApplicationContext(), R.raw.sample_song);
-		mediaPlayer.start();
+		player.play();
+		playButton.setVisibility(View.INVISIBLE);
+		pauseButton.setVisibility(View.VISIBLE);
 	}
+
+	public void onPausePressed(View v){
+		player.pause();
+		playButton.setVisibility(View.VISIBLE);
+		pauseButton.setVisibility(View.INVISIBLE);
+	}	
 }

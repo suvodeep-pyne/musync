@@ -24,8 +24,10 @@ public class SlaveCommunicator implements Runnable {
 			ObjectInputStream objectInput = new ObjectInputStream(
 					socket.getInputStream());
 			Packet packet = (Packet) objectInput.readObject();
-			start_playback(packet);
-			// control_playback();
+
+			if (packet != null) {
+				start_playback(packet);
+			}
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
 		} catch (IOException e1) {
@@ -36,14 +38,8 @@ public class SlaveCommunicator implements Runnable {
 	}
 
 	private void start_playback(Packet packet) {
-		if (packet != null) {
-			MediaPlayer mediaPlayer = MediaPlayer.create(
-					parent.getApplicationContext(), R.raw.sample_song);
-
-			System.out.println("Seeking");
-			mediaPlayer.seekTo(packet.offset);
-			mediaPlayer.start();
-
-		}
+		Player player = new Player(parent.getApplicationContext());
+		player.play(packet.playTime, packet.offset);
+		
 	}
 }
