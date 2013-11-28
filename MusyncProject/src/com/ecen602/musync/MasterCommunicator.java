@@ -30,7 +30,10 @@ public class MasterCommunicator {
 					while (listening) {
 						Socket socket = listenerSocket.accept();
 						if (socket != null) {
-							clients.add(new ClientHandler(socket));
+							
+							final ClientHandler ch = new ClientHandler(socket);
+							ch.setup();
+							clients.add(ch);
 						}
 					}
 				} catch (IOException e) {

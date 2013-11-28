@@ -14,6 +14,7 @@ public class JoinStationActivity extends Activity {
 		setContentView(R.layout.activity_join_station);
 		
 		communicationSlave = new SlaveCommunicator(this);
+		communicationSlave.init();
 		communicationSlaveThread = new Thread(communicationSlave);
 		communicationSlaveThread.start();
 	}
