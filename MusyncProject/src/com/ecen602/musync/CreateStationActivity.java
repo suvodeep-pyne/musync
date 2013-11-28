@@ -1,17 +1,16 @@
 package com.ecen602.musync;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 public class CreateStationActivity extends Activity {
-	private Player player = new Player(this.getApplicationContext());
+	private Player player;
 	
-	private Button playButton, pauseButton;
+	private ImageButton playButton, pauseButton;
 	
 	MasterListener listener;
 	Thread listenerThread;
@@ -21,8 +20,10 @@ public class CreateStationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_station);
 		
-		playButton = (Button) findViewById(R.id.playButton);
-		pauseButton = (Button) findViewById(R.id.pauseButton);
+		player = new Player(this.getApplicationContext());
+		
+		playButton = (ImageButton) findViewById(R.id.playButton);
+		pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		
 		listener = new MasterListener();
 		listenerThread = new Thread(listener);
