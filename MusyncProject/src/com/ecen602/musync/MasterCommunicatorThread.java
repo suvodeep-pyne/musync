@@ -18,17 +18,15 @@ public class MasterCommunicatorThread extends Thread {
 	}
 
 	public void run() {
+		
 		try {
 			ObjectOutputStream objectOutput = new ObjectOutputStream(
 					socket.getOutputStream());
-			
-			Date now = new Date();
-			
-			objectOutput.writeObject(new Packet(now, 50000));
 
+			Date now = new Date();
+			objectOutput.writeObject(new Packet(now, 50000));
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
-
 			String inputLine;
 
 			while ((inputLine = in.readLine()) != null) {

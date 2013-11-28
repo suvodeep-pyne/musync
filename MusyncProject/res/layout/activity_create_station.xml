@@ -8,4 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".CreateStationActivity" >
 
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/play_button"
+        android:onClick="onPlayPressed" />
+
 </RelativeLayout>

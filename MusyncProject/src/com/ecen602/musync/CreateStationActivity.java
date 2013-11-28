@@ -1,9 +1,11 @@
 package com.ecen602.musync;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 public class CreateStationActivity extends Activity {
 	MasterListener listener;
@@ -32,4 +34,9 @@ public class CreateStationActivity extends Activity {
 		return true;
 	}
 
+	public void onPlayPressed(View v){
+		MediaPlayer mediaPlayer = MediaPlayer.create(
+				getApplicationContext(), R.raw.pherari_mon);
+		mediaPlayer.start();
+	}
 }
