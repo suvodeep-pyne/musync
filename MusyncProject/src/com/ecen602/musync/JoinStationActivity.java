@@ -3,20 +3,23 @@ package com.ecen602.musync;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageButton;
 
 public class JoinStationActivity extends Activity {
 	SlaveCommunicator communicationSlave;
 	Thread communicationSlaveThread;
+	private ImageButton playButton, pauseButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_join_station);
 		
-		communicationSlave = new SlaveCommunicator(this);
-		communicationSlave.init();
-		communicationSlaveThread = new Thread(communicationSlave);
-		communicationSlaveThread.start();
+		playButton = (ImageButton) findViewById(R.id.playButton);
+		pauseButton = (ImageButton) findViewById(R.id.pauseButton);		
+		
+		
 	}
 
 	@Override
@@ -25,5 +28,21 @@ public class JoinStationActivity extends Activity {
 		getMenuInflater().inflate(R.menu.join_station, menu);
 		return true;
 	}
+	
+
+	public void onPlayPressed(View v){
+		playButton.setVisibility(View.INVISIBLE);
+		pauseButton.setVisibility(View.VISIBLE);
+		
+		communicationSlave = new SlaveCommunicator(this);
+		communicationSlave.init();
+		communicationSlaveThread = new Thread(communicationSlave);
+		communicationSlaveThread.start();
+	}
+
+	public void onPausePressed(View v){
+		playButton.setVisibility(View.VISIBLE);
+		pauseButton.setVisibility(View.INVISIBLE);
+	}	
 
 }

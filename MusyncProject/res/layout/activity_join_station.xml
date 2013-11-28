@@ -7,11 +7,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".JoinStationActivity" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/play_button"
+        android:onClick="onPlayPressed" />
+    
+    <ImageButton
+        android:id="@+id/pauseButton"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/pause_button"
+        android:visibility="invisible"
+        android:onClick="onPausePressed" />
       
     
 </RelativeLayout>

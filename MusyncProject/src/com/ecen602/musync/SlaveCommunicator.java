@@ -10,7 +10,7 @@ import android.app.Activity;
 public class SlaveCommunicator implements Runnable {
 	final Activity parent;
 	private Socket socket;
-	private ObjectInputStream input;
+	private ObjectInputStream input = null;
 
 	public SlaveCommunicator(Activity parent) {
 		this.parent = parent;
@@ -23,6 +23,8 @@ public class SlaveCommunicator implements Runnable {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
