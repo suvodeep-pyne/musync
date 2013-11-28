@@ -13,7 +13,6 @@ public class CreateStationActivity extends Activity {
 	private ImageButton playButton, pauseButton;
 	
 	MasterCommunicator communicator;
-	Thread listenerThread;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,8 @@ public class CreateStationActivity extends Activity {
 		player.play();
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
+		
+		communicator.send();
 	}
 
 	public void onPausePressed(View v){

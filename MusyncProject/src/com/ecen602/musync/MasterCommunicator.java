@@ -10,17 +10,23 @@ import android.util.Log;
 
 public class MasterCommunicator {
 	private Thread listener;
+	private ServerSocket listenerSocket = null;
 	
 	boolean listening = true;
 	final List<ClientHandler> clients = new ArrayList<ClientHandler>();
+	
+	public MasterCommunicator() {
+		init();
+	}
 
-	public void startListener() {
+	public void init() {
 		listener = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				ServerSocket listenerSocket = null;
 				try {
-					listenerSocket = new ServerSocket(Constants.PORT);
+					if (listenerSocket == null)
+						listenerSocket = new ServerSocket(Constants.PORT);
+					
 					while (listening) {
 						Socket socket = listenerSocket.accept();
 						if (socket != null) {
@@ -31,13 +37,17 @@ public class MasterCommunicator {
 					e.printStackTrace();
 				} finally {
 					try {
-						listenerSocket.close();
+						if (listenerSocket != null) 
+							listenerSocket.close();
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		});
+	}
+	
+	public void startListener() {
 		listener.start();
 	}
 	
