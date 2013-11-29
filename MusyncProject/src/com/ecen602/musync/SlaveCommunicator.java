@@ -27,7 +27,7 @@ public class SlaveCommunicator {
 					}
 
 					while (true) {
-						Packet packet = (Packet) input.readObject();
+						PlayPacket packet = (PlayPacket) input.readObject();
 						if (packet != null) {
 							start_playback(packet);
 						}
@@ -44,7 +44,7 @@ public class SlaveCommunicator {
 		listener.start();
 	}
 
-	private void start_playback(Packet packet) {
+	private void start_playback(PlayPacket packet) {
 		Player player = new Player(parent.getApplicationContext());
 		player.play(packet.playTime, packet.offset);
 	}

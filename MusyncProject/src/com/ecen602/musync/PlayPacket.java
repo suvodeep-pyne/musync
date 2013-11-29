@@ -3,7 +3,7 @@ package com.ecen602.musync;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Packet implements Serializable{
+public class PlayPacket implements Serializable{
 
 	/** Auto generated! Do not modify! */
 	private static final long serialVersionUID = 3429538255807019677L;
@@ -14,7 +14,7 @@ public class Packet implements Serializable{
 	// Seek time in msec
 	final int offset;
 	
-	Packet(Date playTime, int offset) {
+	PlayPacket(Date playTime, int offset) {
 		this.playTime = playTime;
 		this.offset = offset;
 	}

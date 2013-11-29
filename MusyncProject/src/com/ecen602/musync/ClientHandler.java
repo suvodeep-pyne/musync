@@ -24,7 +24,7 @@ public class ClientHandler {
 	public void send(Date now) throws IOException {
 		if (output == null) 
 			throw new IOException("ObjectOutputStream not initialized");
-		output.writeObject(new Packet(now, 0));
+		output.writeObject(new PlayPacket(now, 0));
 		output.flush();
 	}
 

@@ -9,10 +9,8 @@ import android.widget.ImageButton;
 
 public class CreateStationActivity extends Activity {
 	private Player player;
-	
 	private ImageButton playButton, pauseButton;
-	
-	MasterCommunicator communicator;
+	private MasterCommunicator communicator;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
