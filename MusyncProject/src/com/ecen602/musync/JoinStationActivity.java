@@ -62,7 +62,6 @@ public class JoinStationActivity extends Activity {
 				// ListView Clicked item index
 				int itemPosition = position;
 				selectedHostIp = posMap.get(itemPosition);
-				slaveCommunicator.connectToHost();
 				
 				// ListView Clicked item value
 				String itemValue = (String) listView
@@ -105,6 +104,8 @@ public class JoinStationActivity extends Activity {
 	public void onPlayPressed(View v) {
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
+		
+		slaveCommunicator.connectToHost();
 	}
 
 	public void onPausePressed(View v) {

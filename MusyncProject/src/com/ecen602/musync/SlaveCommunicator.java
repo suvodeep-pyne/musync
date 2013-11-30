@@ -22,7 +22,7 @@ public class SlaveCommunicator {
 
 	final Map<String, StationInfo> hostMap = new HashMap<String, StationInfo>();
 
-	private Player player = null;
+	Player player = null;
 
 	public SlaveCommunicator(JoinStationActivity parent) {
 		this.parent = parent;
@@ -84,12 +84,10 @@ public class SlaveCommunicator {
 			}
 		}, "Client Multicast Receiver");
 		multicastThread.start();
-		player = new Player(parent.getApplicationContext());
+		player = new Player(parent);
 	}
 
 	public void connectToHost() {
-		if (player != null) 
-			player.stop();
 		final String hostIP = parent.selectedHostIp;
 		
 		Thread listener = new Thread(new Runnable() {

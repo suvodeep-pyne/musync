@@ -2,19 +2,30 @@ package com.ecen602.musync;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnErrorListener;
+import android.widget.Toast;
 
 public class Player {
 	final Context context;
-	private MediaPlayer mediaPlayer;
+	final MediaPlayer mediaPlayer;
 
 	// Synchronization Parameters in nanosec
 	@SuppressWarnings("unused")
 	private long delay;
 	private long offset;
 
-	Player(Context context) {
+	Player(final Context context) {
 		this.context = context;
 		mediaPlayer = MediaPlayer.create(context, R.raw.sample_song);
+		
+		mediaPlayer.setOnErrorListener(new OnErrorListener() {
+			
+			@Override
+			public boolean onError(MediaPlayer mp, int what, int extra) {
+				Toast.makeText(context, "Error in playing media", Toast.LENGTH_LONG).show();
+				return false;
+			}
+		});
 	}
 
 	public void play() {
@@ -55,7 +66,7 @@ public class Player {
 				}
 			}
 		};
-		playbackSchedulerThread.start();
+		 playbackSchedulerThread.start();
 	}
 
 	public void pause() {
