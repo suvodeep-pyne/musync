@@ -111,11 +111,5 @@ public class JoinStationActivity extends Activity {
 		playButton.setVisibility(View.VISIBLE);
 		pauseButton.setVisibility(View.INVISIBLE);
 	}
-    protected void onStop() {
-    	slaveCommunicator.stop_playback();
-    }
 
-    protected void onDestroy() {
-    	slaveCommunicator.stop_playback();
-    }
 }

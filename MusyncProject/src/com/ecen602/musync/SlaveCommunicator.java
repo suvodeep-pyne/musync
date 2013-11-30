@@ -50,15 +50,23 @@ public class SlaveCommunicator {
 					try {
 						multicastSocket.receive(packet);
 
+						boolean modified = false;
 						String ip = packet.getAddress().getHostAddress();
+						String name = new String(packet.getData());
 						StationInfo stationInfo = hostMap.get(ip);
 						if (stationInfo == null) {
 							stationInfo = new StationInfo(ip);
 		                    hostMap.put(ip, stationInfo);
-							parent.updateListView();
+		                    modified = true;
 						}
-						stationInfo.name = new String(packet.getData());
+						
+						if (!name.equals(stationInfo.name)) {
+							stationInfo.name = name;
+							modified = true;
+						}
 						stationInfo.lastseen = System.currentTimeMillis();
+						if (modified)
+							parent.updateListView();
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -67,8 +75,8 @@ public class SlaveCommunicator {
 					for (String ip : hostMap.keySet()) {
 						if (System.currentTimeMillis() > hostMap.get(ip).lastseen
 								+ Constants.BROADCAST_INTERVAL * 2) {
-							remove.add(ip);
-							parent.updateListView();
+							// remove.add(ip);
+							// parent.updateListView();
 						}
 					}
 					hostMap.keySet().removeAll(remove);
