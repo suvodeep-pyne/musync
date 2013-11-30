@@ -1,7 +1,5 @@
 package com.ecen602.musync;
 
-import java.util.Date;
-
 import android.content.Context;
 import android.media.MediaPlayer;
 
@@ -55,6 +53,10 @@ public class Player {
 	
 	public void pause(){
 		mediaPlayer.pause();
+	}	
+	
+	public void stop(){
+		mediaPlayer.stop();
 	}	
 	
 	public void setSyncParams(long delay, long offset) {

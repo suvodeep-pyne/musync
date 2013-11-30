@@ -74,7 +74,7 @@ public class MasterCommunicator {
 							multicastSocket.send(packet);
 
 							try {
-								Thread.sleep(Constants.BROADCAST_INTERVAL);
+								Thread.sleep(Constants.BROADCAST_INTERVAL / 2);
 							} catch (InterruptedException e) {
 							}
 						} catch (IOException e) {

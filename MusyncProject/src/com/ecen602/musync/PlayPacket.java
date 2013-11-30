@@ -1,7 +1,6 @@
 package com.ecen602.musync;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class PlayPacket implements Serializable{
 

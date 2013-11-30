@@ -8,5 +8,6 @@
     <string name="title_activity_join_station">Join a station</string>
     <string name="title_activity_create_station">Create a Music Station</string>
     <string name="hello_world">Hello world!</string>
+    <string name="station_list_header">List of Available Stations</string>
 
 </resources>
