@@ -23,7 +23,7 @@ public class CreateStationActivity extends Activity {
 		pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		
 		communicator = new MasterCommunicator();
-		communicator.startListener();
+		communicator.init();
 		
 		Log.w("Musync", "Started ListenerThread");
 	}

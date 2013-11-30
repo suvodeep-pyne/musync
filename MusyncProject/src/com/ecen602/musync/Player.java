@@ -9,23 +9,27 @@ public class Player {
 	final Context context;
 	private MediaPlayer mediaPlayer;
 	
+	// Synchronization Parameters in nanosec
+	@SuppressWarnings("unused")
+	private long delay;
+	private long offset;
+	
 	Player(Context context) {
 		this.context = context;
 		mediaPlayer = MediaPlayer.create(context, R.raw.sample_song);
-		
 	}
 	
 	public void play(){
 		mediaPlayer.start();
 	}
 	
-	public void play(final Date startTime, final int offset){
+	public void play(final long startTime, final int seek){
 		Thread playbackSchedulerThread = new Thread() {
 		    public void run() {
 		    	long now = System.currentTimeMillis();
-		    	long scheduled = startTime.getTime();
+		    	long scheduled = startTime - offset;
 		        
-		    	int seekTime = offset;
+		    	int seekTime = seek;
 		    	/* Already missed out on some time. Compensate with offset */
 		    	if (scheduled < now) {
 		    		seekTime += (int) (now - scheduled);
@@ -52,4 +56,9 @@ public class Player {
 	public void pause(){
 		mediaPlayer.pause();
 	}	
+	
+	public void setSyncParams(long delay, long offset) {
+		this.delay = delay;
+		this.offset = offset;
+	}
 }

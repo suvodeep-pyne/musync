@@ -16,7 +16,10 @@ public class JoinStationActivity extends Activity {
 		setContentView(R.layout.activity_join_station);
 		
 		playButton = (ImageButton) findViewById(R.id.playButton);
-		pauseButton = (ImageButton) findViewById(R.id.pauseButton);		
+		pauseButton = (ImageButton) findViewById(R.id.pauseButton);
+		
+		slaveCommunicator = new SlaveCommunicator(this);
+		slaveCommunicator.init();
 	}
 
 	@Override
@@ -30,9 +33,6 @@ public class JoinStationActivity extends Activity {
 	public void onPlayPressed(View v){
 		playButton.setVisibility(View.INVISIBLE);
 		pauseButton.setVisibility(View.VISIBLE);
-		
-		slaveCommunicator = new SlaveCommunicator(this);
-		slaveCommunicator.init();
 	}
 
 	public void onPausePressed(View v){
